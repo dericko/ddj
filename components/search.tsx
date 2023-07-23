@@ -7,7 +7,7 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/command'
-import { type Pokemon } from '@prisma/client'
+import { type Document } from '@prisma/client'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useDebounce } from 'use-debounce'
@@ -15,7 +15,7 @@ import { useDebounce } from 'use-debounce'
 export interface SearchProps {
   searchPokedex: (
     content: string
-  ) => Promise<Array<Pokemon & { similarity: number }>>
+  ) => Promise<Array<Document & { similarity: number }>>
 }
 
 export function Search({ searchPokedex }: SearchProps) {

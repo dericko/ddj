@@ -15,11 +15,10 @@
   },
   "dependencies": {
     "@prisma/client": "^5.0.0",
-    "@upstash/ratelimit": "^0.4.2",
-    "@vercel/kv": "^0.2.1",
     "autoprefixer": "10.4.14",
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
+    "dotenv": "^16.3.1",
     "gpt3-tokenizer": "^1.1.5",
     "next": "13.4.10",
     "openai-edge": "^0.5.1",

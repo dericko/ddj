@@ -2,32 +2,43 @@
 
 import prisma from '@/lib/prisma'
 import { openai } from '@/lib/openai'
-import { type Pokemon } from '@prisma/client'
-import { ratelimit } from '@/lib/utils'
+import { type Document } from '@prisma/client'
 
-export async function searchPokedex(
+export async function listAll(): Promise<Array<Document>> {
+  try {
+    const documents = await prisma.document.findMany({
+      orderBy: {
+        translator: 'asc',
+      },
+    })
+    return documents
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+
+export async function listSimilar(
   query: string
-): Promise<Array<Pokemon & { similarity: number }>> {
+): Promise<Array<Document & { similarity: number }>> {
   try {
     if (query.trim().length === 0) return []
 
-    const { success } = await ratelimit.limit('generations')
-    if (!success) throw new Error('Rate limit exceeded')
-
     const embedding = await generateEmbedding(query)
     const vectorQuery = `[${embedding.join(',')}]`
-    const pokemon = await prisma.$queryRaw`
+    const document = await prisma.$queryRaw`
       SELECT
         id,
         "name",
         1 - (embedding <=> ${vectorQuery}::vector) as similarity
-      FROM pokemon
+      FROM document
       where 1 - (embedding <=> ${vectorQuery}::vector) > .5
       ORDER BY  similarity DESC
       LIMIT 8;
     `
 
-    return pokemon as Array<Pokemon & { similarity: number }>
+    return document as Array<Document & { similarity: number }>
   } catch (error) {
     console.error(error)
     throw error
