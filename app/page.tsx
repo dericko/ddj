@@ -1,5 +1,4 @@
-import { listSimilar } from '@/app/actions'
-import { Search } from '@/components/search'
+import { List } from '@/components/list'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -7,6 +6,7 @@ import Link from 'next/link'
 export const runtime = 'nodejs' // default
 export const preferredRegion = 'home'
 export const dynamic = 'force-dynamic'
+
 
 export default function Home() {
   return (
@@ -18,7 +18,7 @@ export default function Home() {
         <div className="flex justify-between items-center mb-4">
           <div className="space-y-1">
             <h2 className="text-xl font-semibold">
-              Browse top translations
+              Browse translations of the Tao Te Ching
             </h2>
             <p className="text-sm text-gray-500 leading-5">
               Cosine similarity is used to find the most
@@ -28,7 +28,7 @@ export default function Home() {
         </div>
         <div className="divide-y divide-gray-900/5">
           {/* <Search searchPokedex={searchPokedex} /> */}
-
+          <List />
         </div>
       </div>
     </main>

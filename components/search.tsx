@@ -11,6 +11,7 @@ import { type Document } from '@prisma/client'
 import { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast'
 import { useDebounce } from 'use-debounce'
+import { }
 
 export interface SearchProps {
   searchPokedex: (

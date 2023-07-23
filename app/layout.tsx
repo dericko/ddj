@@ -3,9 +3,9 @@ import { Inter } from 'next/font/google'
 import { HotToaster } from '../components/hot-toaster'
 
 export const metadata = {
-  title: 'Vercel Postgres AI-powered Semantic Search Demo',
+  title: 'Translations Comparison',
   description:
-    'A Next.js app that uses Vercel Postgres with pgvector, Prisma, and OpenAI to power a semantic search.',
+    'Semantic search to compare translations of the Tao Te Ching.',
 }
 
 const inter = Inter({
