@@ -42,7 +42,7 @@ export async function listSimilar(id: string): Promise<Array<Document & { simila
       FROM document
       where 1 - (embedding <=> ${vectorQuery}::vector) > .5
       ORDER BY similarity DESC
-      LIMIT 8;
+      LIMIT 10;
     `
 
     return documents as Array<Document & { similarity: number }>
