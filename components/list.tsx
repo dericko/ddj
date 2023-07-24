@@ -13,13 +13,19 @@ function Section({ document, handleClick }: SectionProps) {
     const [showText, setShowText] = useState(false);
     const similarityText = similarity?.toFixed(3)
     const showSimilarityText = similarityText && similarityText !== '1.000'
-    const primaryColor = similarity === 1 ? 'bg-green-400' : 'bg-gray-200'
+    const primaryColor = similarity === 1 ? 'bg-green-400' : 'bg-gray-300'
     return (
         <>
-            <section className={`flex justify-between ${primaryColor} hover:opacity-75`}>
-                <button className="px-2 py-1 text-sm border border-gray-400 hover:bg-gray-600" onClick={() => setShowText(!showText)}>{showText ? "v" : ">"}</button>
+            <section className={`flex justify-between ${primaryColor} hover:opacity-75 hover:cursor-pointer`}
+                onClick={() => setShowText(!showText)}
+            >
+                <button className="px-2 py-1 text-sm border border-gray-400" onClick={() => setShowText(!showText)}>{showText ? "v" : ">"}</button>
                 <p>{translator} ({date}){showSimilarityText ? ` - ${similarityText}` : ''}</p>
-                <button onClick={() => handleClick(id)} className="underline" >
+                <button onClick={(e) => {
+                    e.stopPropagation()
+                    setShowText(true)
+                    handleClick(id)
+                }} className="underline" >
                     view similar
                 </button>
             </section>
