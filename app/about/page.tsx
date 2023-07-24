@@ -22,6 +22,9 @@ export default function About() {
           <p>Tao Hyum Kim. &quot;Other Laozi Parallels in the Hanfeizi&quot;. <em>Sino-Platonic Papers</em>, 199. 2010.</p>
           <p>182 Translations of Chapter One of Daodejing. Bopsecrets. Accessed: 18 December 2015. Source: <a href="http://www.bopsecrets.org/gateway/passages/tao-te-ching.htm">http://www.bopsecrets.org/gateway/passages/tao-te-ching.htm</a></p>
         </code>
+        <a className="text-blue-600" href="https://github.com/dericko/">source code</a>
+        {' / '}
+        <a className="text-blue-600" href="https://detc.cc">created by detc.cc</a>
       </div>
     </main>
   )
