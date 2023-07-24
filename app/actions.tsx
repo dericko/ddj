@@ -1,19 +1,11 @@
 'use server'
 
 import prisma from '@/lib/prisma'
-import { openai } from '@/lib/openai'
 import { type Document } from '@prisma/client'
-import { topTranslators } from './constants'
 
 export async function listAll(): Promise<Array<Document>> {
   try {
-    const documents = await prisma.document.findMany({
-      where: {
-        translator: {
-          in: topTranslators,
-        },
-      },
-    })
+    const documents = await prisma.document.findMany()
     return documents
   } catch (error) {
     console.error(error)
@@ -41,8 +33,7 @@ export async function listSimilar(id: string): Promise<Array<Document & { simila
         1 - (embedding <=> ${vectorQuery}::vector) as similarity
       FROM document
       where 1 - (embedding <=> ${vectorQuery}::vector) > .5
-      ORDER BY similarity DESC
-      LIMIT 10;
+      ORDER BY similarity DESC;
     `
 
     return documents as Array<Document & { similarity: number }>
@@ -51,16 +42,3 @@ export async function listSimilar(id: string): Promise<Array<Document & { simila
     throw error
   }
 }
-
-// async function generateEmbedding(raw: string) {
-//   // OpenAI recommends replacing newlines with spaces for best results
-//   const input = raw.replace(/\n/g, ' ')
-//   const embeddingResponse = await openai.createEmbedding({
-//     model: 'text-embedding-ada-002',
-//     input,
-//   })
-
-//   const embeddingData = await embeddingResponse.json()
-//   const [{ embedding }] = (embeddingData as any).data
-//   return embedding
-// }

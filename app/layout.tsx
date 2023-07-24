@@ -1,11 +1,10 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { HotToaster } from '../components/hot-toaster'
 
 export const metadata = {
-  title: 'Translations Comparison',
+  title: 'Tao Translate',
   description:
-    'Semantic search to compare translations of the Tao Te Ching.',
+    'Semantic search to compare 180+ translations of the Tao Te Ching.',
 }
 
 const inter = Inter({
@@ -23,7 +22,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.variable}>
         {children}
-        <HotToaster />
       </body>
     </html>
   )
