@@ -1,6 +1,6 @@
 {
-  "name": "postgres-prisma-pgvector-openai",
-  "repository": "https://github.com/vercel/examples.git",
+  "name": "daodejing-translations",
+  "repository": "https://github.com/dericko/ddj.git",
   "license": "MIT",
   "version": "0.0.0",
   "private": true,
@@ -21,7 +21,6 @@
     "dotenv": "^16.3.1",
     "gpt3-tokenizer": "^1.1.5",
     "next": "13.4.10",
-    "openai-edge": "^0.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",

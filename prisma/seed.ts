@@ -2,10 +2,6 @@ import prisma from "../lib/prisma";
 import translations from "./072323-embeddings_laozi.json";
 import "dotenv/config";
 
-if (!process.env.OPENAI_API_KEY) {
-  throw new Error("process.env.OPENAI_API_KEY is not defined. Please set it.");
-}
-
 if (!process.env.POSTGRES_URL) {
   throw new Error("process.env.POSTGRES_URL is not defined. Please set it.");
 }
