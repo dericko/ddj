@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import type { SpotlightPair } from '@/app/actions'
+import { getChapter1 } from '@/lib/chapter1-texts'
 
 interface SpotlightProps {
   pairA: SpotlightPair
@@ -42,7 +43,9 @@ function ComparisonPanel({ pair }: { pair: SpotlightPair }) {
               <p className="font-default font-semibold text-ink text-sm">{doc.translator}</p>
               <p className="font-default text-xs text-muted">{doc.date}</p>
             </div>
-            <p className="font-serif text-base leading-relaxed text-ink">{doc.text}</p>
+            <p className="font-serif text-base leading-relaxed text-ink whitespace-pre-line">
+              {getChapter1(doc.translator)?.text ?? doc.text}
+            </p>
           </div>
         ))}
       </div>
