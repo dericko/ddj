@@ -99,6 +99,30 @@ export const TRANSLATORS: TranslatorMeta[] = [
     cluster: "sinologist",
     commentary: `Victor Mair's translation, published as <em>Tao Te Ching: The Classic Book of Integrity and the Way</em> (1990), draws on wide comparative linguistic and historical scholarship to situate the Daodejing in its broadest possible context. Mair, a professor at the University of Pennsylvania, was particularly interested in connections between early Daoist thought and Central Asian and Indo-European traditions, arguing that some Daoist concepts may have entered China through contact with steppe peoples. His translation is notable for rendering "Tao" as "Way" and "Te" as "Integrity" — choices reflecting his commitment to stripping away centuries of accumulated interpretation and returning to a more etymologically grounded reading. Mair also drew on early manuscript traditions and brought comparative mythology and linguistics to bear on difficult passages. His work remains controversial among specialists but represents one of the most adventurous and far-reaching scholarly approaches to the text, consistently asking what the words originally meant before tradition calcified around them.`,
   },
+  {
+    name: "Stephen Mitchell",
+    dates: "b. 1943",
+    cluster: "spiritual",
+    commentary: `Stephen Mitchell is an American poet and translator whose 1988 rendering of the Daodejing became one of the bestselling English versions ever published. Mitchell reads no classical Chinese; his translation was assembled from comparison of existing English versions and consultation with scholars. The sinologist Paul Goldin singled out Mitchell's version for criticism in his essay "Those Who Don't Know Speak," arguing that working without access to the original allows a translator to select the palatable and discard the difficult. Mitchell's defense — that fidelity to the spirit matters more than fidelity to the letter — is a position with its own long history in translation theory. Whatever its philological standing, his version is widely credited with introducing the Daodejing to a generation of Western readers who would never have sought out an academic translation. The embeddings place it far from the sinologist cluster.`,
+  },
+  {
+    name: "Ursula K. Le Guin",
+    dates: "1929–2018",
+    cluster: "literary",
+    commentary: `Ursula K. Le Guin was one of the most celebrated American fiction writers of the twentieth century, whose science fiction and fantasy drew deeply on Daoist thought — particularly the concepts of wu wei, cyclical change, and yielding as strength. Her 1997 rendering, subtitled "A Book about the Way and the Power of the Way," was explicitly a writer's translation rather than a scholar's: she worked from existing versions with the help of J.P. Seaton, a sinologist, but made no claim to translate from the Chinese directly. Her introduction is a small classic of translation theory, arguing for the Daodejing as a "feminist" and "anarchist" text. Her version is notable for its spare contemporary diction, its short lines, and its avoidance of mystifying terminology. Goldin included her among the American non-readers he criticized; her embeddings cluster with the literary adapters.`,
+  },
+  {
+    name: "Witter Bynner",
+    dates: "1881–1968",
+    cluster: "literary",
+    commentary: `Witter Bynner was an American poet who produced a translation of the Daodejing in 1944 in collaboration with Kiang Kang-hu, a Chinese scholar who provided literal cribs that Bynner then rendered into English verse. The collaboration was genuinely cross-cultural in its method, though Bynner himself could not read Chinese. His version, published as <em>The Way of Life According to Laotzu</em>, is notable for its loose, ruminative quality — closest in spirit to a paraphrase, furthest in letter from the Chinese. Paul Goldin cited Bynner among the non-readers whose versions he criticized. The opening lines are striking: Bynner replaces "Tao" entirely with "Existence," a choice that cuts against the philosophical specificity the term carries and signals his primary allegiance to accessibility over fidelity. His version was widely read in the mid-twentieth century and influenced later literary adapters.`,
+  },
+  {
+    name: "Aleister Crowley",
+    dates: "1875–1947",
+    cluster: "literary",
+    commentary: `Aleister Crowley — occultist, poet, and provocateur — produced a translation of the Daodejing in 1918 as part of his broader project of synthesizing Western occultism with Eastern philosophy. He titled it the "Tao Teh King" and read it through the lens of his own magical system, Thelema, most visibly in Chapter 1: where other translators see "desire" as an epistemological stance, Crowley hears "fulfilling one's will" — the central imperative of Thelema. The result is a translation that says something genuinely different from any other version, not because the Chinese permits it but because Crowley's interpretive frame was entirely his own. It is among the most eccentric texts in the English translation tradition and has found a devoted readership in occult circles. As a data point, it is a near-perfect illustration of how a translator's prior commitments shape what they find in the text.`,
+  },
 ]
 
 export const CLUSTERS: ClusterGroup[] = [
@@ -112,12 +136,12 @@ export const CLUSTERS: ClusterGroup[] = [
     name: "literary",
     label: "The Literary Adapters",
     description: "Translators who balanced scholarly grounding with literary ambition — seeking style and feeling alongside accuracy.",
-    members: ["Lin Yutang", "Richard Wilhelm", "Ellen M. Chen", "Stephen Addiss and Stanley Lombardo", "Gia-fu Feng and Jane English"],
+    members: ["Lin Yutang", "Richard Wilhelm", "Ellen M. Chen", "Stephen Addiss and Stanley Lombardo", "Gia-fu Feng and Jane English", "Ursula K. Le Guin", "Witter Bynner", "Aleister Crowley"],
   },
   {
     name: "spiritual",
     label: "The Spiritual Interpreters",
     description: "Translations driven by spiritual or theological frames — prioritizing the contemplative and experiential over the philological.",
-    members: ["John C.H. Wu", "Gia-fu Feng and Jane English"],
+    members: ["John C.H. Wu", "Gia-fu Feng and Jane English", "Stephen Mitchell"],
   },
 ]

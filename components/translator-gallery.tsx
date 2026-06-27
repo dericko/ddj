@@ -17,7 +17,7 @@ export function TranslatorGallery({ docs }: TranslatorGalleryProps) {
             The Translators
           </h2>
           <p className="font-serif text-xl text-muted leading-relaxed">
-            Fourteen of the most significant voices to render the Daodejing into English — each bringing a distinct tradition, method, and interpretive frame.
+            Eighteen of the most significant voices to render the Daodejing into English — each bringing a distinct tradition, method, and interpretive frame.
           </p>
         </div>
 
