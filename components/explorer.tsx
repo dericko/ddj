@@ -41,6 +41,7 @@ export function Explorer({ docs }: ExplorerProps) {
 
   const handleSelect = async (id: string, name: string) => {
     setSelected(name)
+    setExpanded(new Set())
     setLoading(true)
     try {
       const res = await listSimilar(id)
