@@ -6,6 +6,9 @@ import { ClusterViz } from '@/components/cluster-viz'
 import { Explorer } from '@/components/explorer'
 import { getSpotlightPair, listAll, getTopTranslatorDocs } from '@/app/actions'
 import { TRANSLATORS } from '@/lib/translator-data'
+import { TranslationInset } from '@/components/translation-inset'
+import { ScrollReveal } from '@/components/scroll-reveal'
+import { getChapter1 } from '@/lib/chapter1-texts'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
@@ -25,6 +28,7 @@ export default async function Home() {
     <main>
       <Hero />
 
+      {/* Intro paragraph 1 */}
       <EssaySection
         pullQuote="The most translated text besides the Bible"
       >
@@ -34,6 +38,19 @@ export default async function Home() {
           traditions of &ldquo;Laoist&rdquo; schools. Its eighty-one short chapters address the nature of the
           Tao (the Way), Te (virtue or power), and the art of governing both a kingdom and oneself.
         </p>
+      </EssaySection>
+
+      <section className="py-12 px-6">
+        <TranslationInset
+          translator="D.C. Lau"
+          date="1963"
+          cluster="sinologist"
+          text={getChapter1('D.C. Lau')?.text ?? ''}
+        />
+      </section>
+
+      {/* Intro paragraph 2 */}
+      <EssaySection>
         <p>
           What makes it unusual in world literature is the sheer proliferation of its translations.
           By current count, there are over 250 English versions alone — an astonishing number for a
@@ -41,6 +58,29 @@ export default async function Home() {
           an interpretation: the ancient Chinese admits ambiguity that no English rendering can fully
           honor.
         </p>
+      </EssaySection>
+
+      <section className="py-12 px-6">
+        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          <TranslationInset
+            translator="Arthur Waley"
+            date="1934"
+            cluster="sinologist"
+            text={getChapter1('Arthur Waley')?.text ?? ''}
+            paired
+          />
+          <TranslationInset
+            translator="Wing-Tsit Chan"
+            date="1963"
+            cluster="sinologist"
+            text={getChapter1('Wing-Tsit Chan')?.text ?? ''}
+            paired
+          />
+        </div>
+      </section>
+
+      {/* Intro paragraph 3 */}
+      <EssaySection>
         <p>
           The standard text used by most translators descends from the commentary of Wang Pi
           (226–249 CE). More recently, the discovery of the Ma-wang-tui silk manuscripts in 1973 —
@@ -51,48 +91,114 @@ export default async function Home() {
 
       <div className="section-rule" aria-hidden="true" />
 
-      <EssaySection>
-        <div className="space-y-12">
-          <div>
-            <p className="font-default text-sm font-semibold text-accent uppercase tracking-widest mb-4">01</p>
-            <h3 className="font-serif text-2xl md:text-3xl font-semibold text-ink mb-4">
-              Word for word, or clear in meaning?
-            </h3>
-            <p className="font-serif text-xl leading-relaxed text-ink">
-              Ancient Chinese is uninflected and permits radical syntactic ambiguity. A fully
-              literal translation would preserve word order at the cost of coherence; a freely
-              interpretive one risks substituting the translator&rsquo;s philosophy for Laozi&rsquo;s.
-              The most respected translations find a balance — literal enough to be accountable,
-              free enough to be readable.
+      {/* Tension 1: Literal vs paraphrased */}
+      <section className="py-24 px-6">
+        <div className="max-w-3xl mx-auto">
+          <ScrollReveal>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-ink mb-6">
+              Literal vs paraphrased
+            </h2>
+            <p className="font-serif text-xl md:text-2xl leading-relaxed text-ink mb-10">
+              Henricks follows the Ma-wang-tui manuscripts closely enough that his opening splits
+              into two declarative sentences where most translators write one. Mitchell, who reads
+              no classical Chinese, worked from existing versions to produce a philosophical poem.
+              Notice how the shift from &ldquo;the constant Way&rdquo; to &ldquo;the eternal Tao&rdquo; changes what
+              the reader is being asked to imagine — and how much the line breaks alone can shift
+              the feeling of a passage.
             </p>
-          </div>
-          <div>
-            <p className="font-default text-sm font-semibold text-accent uppercase tracking-widest mb-4">02</p>
-            <h3 className="font-serif text-2xl md:text-3xl font-semibold text-ink mb-4">
-              Historical context, or contemporary meaning?
-            </h3>
-            <p className="font-serif text-xl leading-relaxed text-ink">
-              The Daodejing emerged as a political text — a meditation on rulership in the Warring
-              States period. Popular translations often strip this context, presenting the text as
-              timeless personal wisdom. Academic translations restore the historical frame, sometimes
-              at the cost of accessibility.
-            </p>
-          </div>
-          <div>
-            <p className="font-default text-sm font-semibold text-accent uppercase tracking-widest mb-4">03</p>
-            <h3 className="font-serif text-2xl md:text-3xl font-semibold text-ink mb-4">
-              Ideas, or style and feeling?
-            </h3>
-            <p className="font-serif text-xl leading-relaxed text-ink">
-              The tone of the Daodejing is often described as playful, even paradoxical — a great
-              deal of its meaning rides in its music. A translation that conveys every philosophical
-              proposition while losing the lightness of the original has, in some important sense,
-              failed. The best translators succeed at both, and it is largely their work and
-              accomplishment to recreate ideas, style, and mood in another tongue.
-            </p>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <TranslationInset
+              translator="Robert Henricks"
+              date="1989"
+              cluster="sinologist"
+              text={getChapter1('Robert Henricks')?.text ?? ''}
+              paired
+            />
+            <TranslationInset
+              translator="Stephen Mitchell"
+              date="1988"
+              cluster="spiritual"
+              text={getChapter1('Stephen Mitchell')?.text ?? ''}
+              paired
+            />
           </div>
         </div>
-      </EssaySection>
+      </section>
+
+      {/* Tension 2: Historical vs contemporary */}
+      <section className="py-24 px-6">
+        <div className="max-w-3xl mx-auto">
+          <ScrollReveal>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-ink mb-6">
+              Historical vs contemporary
+            </h2>
+            <p className="font-serif text-xl md:text-2xl leading-relaxed text-ink mb-10">
+              Duyvendak&rsquo;s dense, formal prose keeps the text at a scholarly distance —
+              &ldquo;Non-being&rdquo; and &ldquo;Being&rdquo; signal a political philosophy from the Warring States, not a
+              personal guide. Le Guin&rsquo;s short lines and second-person address make the same ideas
+              feel immediate. Both are working from the same source; what changes is the implied
+              reader and what the translator thinks the text is for.
+            </p>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <TranslationInset
+              translator="J.J.L. Duyvendak"
+              date="1954"
+              cluster="sinologist"
+              text={getChapter1('J.J.L. Duyvendak')?.text ?? ''}
+              paired
+            />
+            <TranslationInset
+              translator="Ursula K. Le Guin"
+              date="1997"
+              cluster="literary"
+              text={getChapter1('Ursula K. Le Guin')?.text ?? ''}
+              paired
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Tension 3: Lyrical adaptations */}
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto">
+          <ScrollReveal>
+            <h2 className="font-serif text-3xl md:text-4xl font-semibold text-ink mb-6">
+              Lyrical adaptations
+            </h2>
+            <p className="font-serif text-xl md:text-2xl leading-relaxed text-ink mb-10">
+              These three translators came to the text from outside the scholarly tradition —
+              counterculture spirituality, occult philosophy, and minimalist poetry — and each
+              produced something no sinologist would have written. Read them less for accuracy
+              than for what each reveals about the imaginative range the original makes possible.
+            </p>
+          </ScrollReveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <TranslationInset
+              translator="Gia-fu Feng and Jane English"
+              date="1972"
+              cluster="spiritual"
+              text={getChapter1('Gia-fu Feng and Jane English')?.text ?? ''}
+              paired
+            />
+            <TranslationInset
+              translator="Aleister Crowley"
+              date="1918"
+              cluster="literary"
+              text={getChapter1('Aleister Crowley')?.text ?? ''}
+              paired
+            />
+            <TranslationInset
+              translator="Stephen Addiss and Stanley Lombardo"
+              date="1993"
+              cluster="literary"
+              text={getChapter1('Stephen Addiss and Stanley Lombardo')?.text ?? ''}
+              paired
+            />
+          </div>
+        </div>
+      </section>
 
       <div className="section-rule" aria-hidden="true" />
 
@@ -169,7 +275,13 @@ export default async function Home() {
           <p className="font-default text-xs text-muted leading-relaxed">
             Sources: Paul Goldin, <em>After Confucius</em> (2005) · Livia Kohn &amp; Michael
             LaFargue, <em>Lao-tzu and the Tao-te-ching</em> (1998) · Michael LaFargue,{' '}
-            <em>Tao and Method</em> (1994) · 182 Translations of Chapter One, Bopsecrets.org
+            <em>Tao and Method</em> (1994) · Bureau of Public Secrets,{' '}
+            <a
+              href="https://www.bopsecrets.org/gateway/passages/tao-te-ching.htm"
+              className="underline hover:text-accent transition-colors"
+            >
+              175+ Translations of Chapter One
+            </a>
           </p>
         </div>
       </footer>
