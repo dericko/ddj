@@ -3,17 +3,41 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --bg:           #F7F4EF;
+  --text:         #1A1614;
+  --text-muted:   #6B5E52;
+  --glass-bg:     rgba(255, 255, 255, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.6);
+  --accent:       #8B6F47;
+  --jade:         #4A6741;
+  --blur:         16px;
+}
+
+[data-theme="dark"] {
+  --bg:           #12100E;
+  --text:         #F0EDE8;
+  --text-muted:   #9C8E84;
+  --glass-bg:     rgba(0, 0, 0, 0.3);
+  --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), Georgia, serif;
+}
+
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+}
+
+.font-chinese {
+  font-family: var(--font-noto-serif-sc), 'Noto Serif SC', serif;
 }
