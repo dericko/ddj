@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { listSimilar } from '@/app/actions'
+import { getChapter1 } from '@/lib/chapter1-texts'
 import type { Document } from '@prisma/client'
 
 interface ExplorerProps {
@@ -28,6 +29,15 @@ export function Explorer({ docs }: ExplorerProps) {
   const [selected, setSelected] = useState<string | null>(null)
   const [results, setResults] = useState<Array<Document & { similarity: number }> | null>(null)
   const [loading, setLoading] = useState(false)
+  const [expanded, setExpanded] = useState<Set<string>>(new Set())
+
+  const toggleExpanded = (id: string) => {
+    setExpanded(prev => {
+      const next = new Set(prev)
+      next.has(id) ? next.delete(id) : next.add(id)
+      return next
+    })
+  }
 
   const handleSelect = async (id: string, name: string) => {
     setSelected(name)
@@ -99,9 +109,17 @@ export function Explorer({ docs }: ExplorerProps) {
                         </div>
                       </div>
                       <ScoreBar score={doc.similarity} />
-                      <p className="mt-3 font-serif text-sm text-muted leading-relaxed line-clamp-2">
-                        {doc.text}
+                      <p className={`mt-3 font-serif text-sm text-muted leading-relaxed whitespace-pre-line ${expanded.has(doc.id) ? '' : 'line-clamp-2'}`}>
+                        {expanded.has(doc.id)
+                          ? (getChapter1(doc.translator)?.text ?? doc.text)
+                          : doc.text}
                       </p>
+                      <button
+                        onClick={() => toggleExpanded(doc.id)}
+                        className="mt-2 text-xs font-default text-accent hover:underline"
+                      >
+                        {expanded.has(doc.id) ? 'Collapse' : 'Show full translation'}
+                      </button>
                     </div>
                   ))}
                 </div>
