@@ -42,3 +42,43 @@ export async function listSimilar(id: string): Promise<Array<Document & { simila
     throw error
   }
 }
+
+export interface SpotlightPair {
+  docA: Document
+  docB: Document
+  similarity: number
+}
+
+export async function getSpotlightPair(nameA: string, nameB: string): Promise<SpotlightPair> {
+  try {
+    const [docA, docB] = await Promise.all([
+      prisma.document.findFirst({ where: { translator: nameA } }),
+      prisma.document.findFirst({ where: { translator: nameB } }),
+    ])
+    if (!docA || !docB) throw new Error(`Translator not found: ${!docA ? nameA : nameB}`)
+
+    const result: Array<{ similarity: number }> = await prisma.$queryRaw`
+      SELECT 1 - (
+        (SELECT embedding FROM document WHERE id = ${docA.id})
+        <=>
+        (SELECT embedding FROM document WHERE id = ${docB.id})
+      ) as similarity
+    `
+    return { docA, docB, similarity: result[0].similarity }
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
+
+export async function getTopTranslatorDocs(names: string[]): Promise<Array<Document>> {
+  try {
+    const docs = await prisma.document.findMany({
+      where: { translator: { in: names } },
+    })
+    return docs
+  } catch (error) {
+    console.error(error)
+    throw error
+  }
+}
