@@ -51,6 +51,8 @@ export default async function Home() {
         </p>
       </EssaySection>
 
+      <div className="section-rule" aria-hidden="true" />
+
       <EssaySection>
         <div className="space-y-12">
           <div>
@@ -94,6 +96,8 @@ export default async function Home() {
         </div>
       </EssaySection>
 
+      <div className="section-rule" aria-hidden="true" />
+
       <Spotlight
         title="Who Has the Authority?"
         pairA={spotlight1pairA}
@@ -115,6 +119,8 @@ export default async function Home() {
           </>
         }
       />
+
+      <div className="section-rule" aria-hidden="true" />
 
       <EssaySection
         pullQuote="The embeddings did not know the translators' biographies — only their words."
@@ -138,6 +144,8 @@ export default async function Home() {
           who read the Chinese, who read the mystics, who read the poets.
         </p>
       </EssaySection>
+
+      <div className="section-rule" aria-hidden="true" />
 
       <TranslatorGallery docs={galleryDocs} />
 
