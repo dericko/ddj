@@ -68,7 +68,8 @@ export async function getSpotlightPair(nameA: string, nameB: string): Promise<Sp
       ) as similarity
     `
     if (!result || result.length === 0) throw new Error('Similarity computation returned no results')
-    return { docA, docB, similarity: result[0].similarity }
+    const similarity = result[0].similarity ?? 0
+    return { docA, docB, similarity }
   } catch (error) {
     console.error(error)
     throw error

@@ -36,6 +36,7 @@ export function TranslatorCard({ meta, doc, index }: TranslatorCardProps) {
           </blockquote>
         )}
 
+        {/* commentary is static content from translator-data.ts containing only <em> tags — safe */}
         <p
           className="font-default text-sm leading-relaxed text-ink flex-1"
           dangerouslySetInnerHTML={{ __html: meta.commentary }}

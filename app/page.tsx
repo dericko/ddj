@@ -11,14 +11,12 @@ export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'
 
 export default async function Home() {
-  const [
-    spotlight1pairA,
-    spotlight1pairB,
-    allDocs,
-    galleryDocs,
-  ] = await Promise.all([
-    getSpotlightPair('Stephen Mitchell', 'Arthur Waley'),
-    getSpotlightPair('Ursula K. Le Guin', 'D.C. Lau'),
+  let spotlight1pairA = null
+  let spotlight1pairB = null
+  try { spotlight1pairA = await getSpotlightPair('Stephen Mitchell', 'Arthur Waley') } catch {}
+  try { spotlight1pairB = await getSpotlightPair('Ursula K. Le Guin', 'D.C. Lau') } catch {}
+
+  const [allDocs, galleryDocs] = await Promise.all([
     listAll(),
     getTopTranslatorDocs(TRANSLATORS.map((t) => t.name)),
   ])
@@ -98,6 +96,7 @@ export default async function Home() {
 
       <div className="section-rule" aria-hidden="true" />
 
+      {spotlight1pairA && spotlight1pairB && (
       <Spotlight
         title="Who Has the Authority?"
         pairA={spotlight1pairA}
@@ -119,6 +118,7 @@ export default async function Home() {
           </>
         }
       />
+      )}
 
       <div className="section-rule" aria-hidden="true" />
 

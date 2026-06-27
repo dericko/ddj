@@ -32,9 +32,15 @@ export function Explorer({ docs }: ExplorerProps) {
   const handleSelect = async (id: string, name: string) => {
     setSelected(name)
     setLoading(true)
-    const res = await listSimilar(id)
-    setResults(res)
-    setLoading(false)
+    try {
+      const res = await listSimilar(id)
+      setResults(res)
+    } catch (err) {
+      console.error('Failed to load similar translations:', err)
+      setResults([])
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -55,8 +61,8 @@ export function Explorer({ docs }: ExplorerProps) {
               <button
                 key={doc.id}
                 onClick={() => handleSelect(doc.id, doc.translator)}
-                className={`w-full text-left px-5 py-3.5 flex items-center justify-between gap-4 transition-colors duration-150 hover:bg-white/50 ${
-                  selected === doc.translator ? 'bg-white/60' : ''
+                className={`w-full text-left px-5 py-3.5 flex items-center justify-between gap-4 transition-colors duration-150 hover:bg-[var(--glass-bg)] ${
+                  selected === doc.translator ? 'bg-[var(--glass-bg)]' : ''
                 }`}
               >
                 <div>

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { useRef } from 'react'
 
 const CHINESE_TEXT = `道可道，非常道。
@@ -17,10 +17,11 @@ const CHINESE_TEXT = `道可道，非常道。
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const shouldReduceMotion = useReducedMotion()
 
-  const chineseY = useTransform(scrollYProgress, [0, 1], ['0%', '-25%'])
+  const chineseY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? ['0%', '0%'] : ['0%', '-25%'])
   const chineseOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
-  const titleY = useTransform(scrollYProgress, [0, 1], ['0%', '-10%'])
+  const titleY = useTransform(scrollYProgress, [0, 1], shouldReduceMotion ? ['0%', '0%'] : ['0%', '-10%'])
   const titleOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   return (
@@ -77,8 +78,8 @@ export function Hero() {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+          animate={shouldReduceMotion ? {} : { y: [0, 8, 0] }}
+          transition={shouldReduceMotion ? {} : { duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
           className="w-px h-10 bg-gradient-to-b from-transparent to-muted"
         />
         <span className="text-xs tracking-widest uppercase font-default">scroll</span>

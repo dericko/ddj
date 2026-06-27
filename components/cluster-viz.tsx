@@ -1,7 +1,8 @@
 import { ScrollReveal } from '@/components/scroll-reveal'
 import { CLUSTERS } from '@/lib/translator-data'
+import type { ClusterName } from '@/lib/translator-data'
 
-const CLUSTER_ICONS: Record<string, string> = {
+const CLUSTER_ICONS: Record<ClusterName, string> = {
   sinologist: '学',
   literary: '文',
   spiritual: '道',
@@ -9,7 +10,7 @@ const CLUSTER_ICONS: Record<string, string> = {
 
 export function ClusterViz() {
   return (
-    <section className="py-24 px-6 bg-gradient-to-b from-transparent via-white/20 to-transparent">
+    <section className="py-24 px-6" style={{ background: 'linear-gradient(to bottom, transparent, var(--glass-bg), transparent)' }}>
       <div className="max-w-4xl mx-auto">
         <ScrollReveal>
           <div className="max-w-2xl mb-16">
