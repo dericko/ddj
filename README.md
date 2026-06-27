@@ -12,7 +12,18 @@ The more popular of its translations are not without criticism. In his essay "Th
 Built with next.js, on [pgvector starter](https://vercel.com/templates/next.js/postgres-pgvector)
 
 # Setup
-- assumes `.env` with postgres urls
-- `npx prisma migrate --name init` creates table and adds pgvector
-- `npx prisma db seed` seeds the db
-- `npm run dev` to run app
+Assumes `.env` with postgres url:
+```
+brew install postgresql@17
+brew install pgvector
+brew services start postgresql@17
+createdb ddj
+echo 'POSTGRES_PRISMA_URL="postgresql://<your-username>@localhost:5432/ddj"' >> .env
+```
+
+Initialize/run:
+```
+npx prisma migrate dev --name init # creates table and adds pgvector
+npx prisma db seed # seeds the db
+npm run dev # to run app
+```
