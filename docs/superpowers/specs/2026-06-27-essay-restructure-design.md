@@ -7,6 +7,8 @@
 
 Restructure the main page essay to weave full Chapter 1 translation displays directly into the narrative. Replace the three numbered prose-only tension sections with headed sections containing a short intro blurb and live translation examples. Add four new translators to the gallery and clusterviz. Fix line-break display in Spotlight and Explorer.
 
+All 185 Chapter 1 translations (sourced from bopsecrets.org) are stored in `lib/chapter1-texts.ts` with original line breaks preserved. The `getChapter1(translatorName)` helper looks up by name. This file is already generated and committed.
+
 ---
 
 ## 1. New `TranslationInset` Component
@@ -36,7 +38,9 @@ Layout:
 
 ## 2. Chapter 1 Translation Text
 
-All text sourced from bopsecrets.org/gateway/passages/tao-te-ching.htm. Stored as a new `chapter1` field in `translator-data.ts` for featured translators only.
+All 185 translations sourced from bopsecrets.org/gateway/passages/tao-te-ching.htm and stored in `lib/chapter1-texts.ts`. The `getChapter1(translatorName: string)` function looks up by name. Names are normalized to match DB/translator-data.ts (straight apostrophes, exact spelling).
+
+No `chapter1` field needed on `TranslatorMeta` — the essay insets call `getChapter1()` directly. The Explorer and Spotlight components also use this lookup to display line-break-formatted text.
 
 ### D.C. Lau (1963)
 ```
@@ -306,26 +310,37 @@ Aleister Crowley — occultist, poet, and provocateur — produced a translation
 
 ## 5. Spotlight Line-Break Fix
 
-In `components/spotlight.tsx`, `ComparisonPanel`:
+In `components/spotlight.tsx`, `ComparisonPanel`, use `getChapter1()` to get formatted text rather than raw `doc.text`:
 
-Change:
 ```tsx
-<p className="font-serif text-base leading-relaxed text-ink">{doc.text}</p>
-```
-To:
-```tsx
-<p className="font-serif text-base leading-relaxed text-ink whitespace-pre-line">{doc.text}</p>
+import { getChapter1 } from '@/lib/chapter1-texts'
+// inside ComparisonPanel:
+const formatted = getChapter1(doc.translator)?.text ?? doc.text
+<p className="font-serif text-base leading-relaxed text-ink whitespace-pre-line">{formatted}</p>
 ```
 
 ---
 
 ## 6. Explorer Expandable Full Text
 
-In `components/explorer.tsx`, the results list currently shows `line-clamp-2`. Add per-card expand/collapse state:
+In `components/explorer.tsx`, add per-card expand/collapse to the results list:
 
-- Default: truncated (2 lines), "Show full translation" link below
-- Expanded: full `whitespace-pre-line` text, "Collapse" link
+- Default: truncated (2 lines), "Show full translation" button below
+- Expanded: full `whitespace-pre-line` text from `getChapter1()` (falling back to `doc.text`), "Collapse" button
 - Expansion state is local to each result card (not shared)
+- The translator list (left panel) is unchanged
+
+---
+
+## 7. Footer — Add Bopsecrets Citation
+
+In `app/page.tsx` footer, add to the existing sources paragraph:
+
+```
+· Bureau of Public Secrets, <em>175+ Translations of Chapter One</em>, bopsecrets.org
+```
+
+Link the URL to `https://www.bopsecrets.org/gateway/passages/tao-te-ching.htm`.
 
 ---
 
@@ -333,8 +348,9 @@ In `components/explorer.tsx`, the results list currently shows `line-clamp-2`. A
 
 | File | Change |
 |---|---|
-| `components/translation-inset.tsx` | New component |
-| `lib/translator-data.ts` | Add 4 translators + `chapter1` field for featured translators |
-| `app/page.tsx` | Restructure essay with TranslationInsets + TensionSections |
-| `components/spotlight.tsx` | Add `whitespace-pre-line` to translation text |
-| `components/explorer.tsx` | Add expandable full-text to result cards |
+| `lib/chapter1-texts.ts` | **New** — 185 Chapter 1 translations with line breaks (already generated) |
+| `components/translation-inset.tsx` | **New** — display component for essay insets |
+| `lib/translator-data.ts` | Add 4 translators (Mitchell, Le Guin, Bynner, Crowley) to TRANSLATORS + CLUSTERS |
+| `app/page.tsx` | Restructure essay; add TensionSections; add bopsecrets footer citation |
+| `components/spotlight.tsx` | Use `getChapter1()` + `whitespace-pre-line` |
+| `components/explorer.tsx` | Expandable full text via `getChapter1()` + `whitespace-pre-line` |
