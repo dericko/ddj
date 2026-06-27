@@ -55,7 +55,10 @@ export async function getSpotlightPair(nameA: string, nameB: string): Promise<Sp
       prisma.document.findFirst({ where: { translator: nameA } }),
       prisma.document.findFirst({ where: { translator: nameB } }),
     ])
-    if (!docA || !docB) throw new Error(`Translator not found: ${!docA ? nameA : nameB}`)
+    if (!docA || !docB) {
+      const missing = [!docA && nameA, !docB && nameB].filter(Boolean).join(', ')
+      throw new Error(`Translator(s) not found: ${missing}`)
+    }
 
     const result: Array<{ similarity: number }> = await prisma.$queryRaw`
       SELECT 1 - (
@@ -64,6 +67,7 @@ export async function getSpotlightPair(nameA: string, nameB: string): Promise<Sp
         (SELECT embedding FROM document WHERE id = ${docB.id})
       ) as similarity
     `
+    if (!result || result.length === 0) throw new Error('Similarity computation returned no results')
     return { docA, docB, similarity: result[0].similarity }
   } catch (error) {
     console.error(error)
