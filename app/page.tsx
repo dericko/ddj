@@ -29,14 +29,15 @@ export default async function Home() {
       <Hero />
 
       {/* Intro paragraph 1 */}
-      <EssaySection
-        pullQuote="The most translated text besides the Bible"
-      >
+      <EssaySection>
         <p>
           The <em>Daodejing</em> — also romanized as <em>Tao Te Ching</em> — is an ancient Chinese
           text attributed to the sage Laozi, compiled around the fourth century BCE from the oral
           traditions of &ldquo;Laoist&rdquo; schools. Its eighty-one short chapters address the nature of the
           Tao (the Way), Te (virtue or power), and the art of governing both a kingdom and oneself.
+        </p>
+        <p>
+          Here is it's first chapter, in English translation, by sinologist D.C. Lau:
         </p>
       </EssaySection>
 
@@ -58,10 +59,19 @@ export default async function Home() {
           an interpretation: the ancient Chinese admits ambiguity that no English rendering can fully
           honor.
         </p>
+        <p>
+          Compare D.C. Lau's rendering with two other classics, by Arthur Waley and Wing-Tsit Chan:
+        </p>
       </EssaySection>
 
       <section className="py-12 px-6">
-        <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+          <TranslationInset
+            translator="D.C. Lau"
+            date="1963"
+            cluster="sinologist"
+            text={getChapter1('D.C. Lau')?.text ?? ''}
+          />
           <TranslationInset
             translator="Arthur Waley"
             date="1934"
