@@ -37,7 +37,7 @@ export default async function Home() {
           Tao (the Way), Te (virtue or power), and the art of governing both a kingdom and oneself.
         </p>
         <p>
-          Here is it's first chapter, in English translation, by sinologist D.C. Lau:
+          Here is it&apos;s first chapter, in English translation, by sinologist D.C. Lau:
         </p>
       </EssaySection>
 
@@ -60,7 +60,7 @@ export default async function Home() {
           honor.
         </p>
         <p>
-          Compare D.C. Lau's rendering with two other classics, by Arthur Waley and Wing-Tsit Chan:
+          Compare D.C. Lau&apos;s rendering with two other classics, by Arthur Waley and Wing-Tsit Chan:
         </p>
       </EssaySection>
 
